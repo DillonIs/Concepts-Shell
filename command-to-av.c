@@ -11,34 +11,36 @@
 
 int main(void)
 {
-	char *str1 = malloc(1024);
+	char *string = malloc(1024);
 	size_t len = 1024;
-	int index, colindex, count;
+	long unsigned int index, count;
 
-	printf("Input string: ");
-	getline(&str1, &len, stdin);
+	if (string == NULL)
+	{
+		return(1);
+	}
 
-	colindex = 0;
+	printf("Input a string: ");
+	getline(&string, &len, stdin);
+	printf("Inputted string: %s", string);
 	count = 0;
 
-	for (index = 0; index <= str1[index + 1]; index++)
+	for (index = 0; index <= sizeof(string); index++)
 	{
-		if (str1[index] == ' ' || str1[index] == '\0')
+		if (string[index] == ' ' || string[index] == '\0')
 		{
-			len = '\0';
+			string[index] = '\0';
 			count++;
-			colindex = 0;
 		}
 		else
 		{
-			len = str1[index];
-			colindex++;
+			index++;
 		}
 	}
 
 	for (index = 0; index < count; index++)
 	{
-		printf("%s\n", str1);
+		printf("%s\n", string);
 	}
 
 	return (0);
